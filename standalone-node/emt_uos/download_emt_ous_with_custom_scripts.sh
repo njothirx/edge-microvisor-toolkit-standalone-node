@@ -7,6 +7,7 @@
 # The file server URL is defined in FILE_RS_URL
 
 export PLATFORM_TYPE="${1:-PTL}"
+export PLATFORM_TYPE="${2:-NVL}"
 
 FILE_RS_URL="https://files-rs.edgeorchestration.intel.com/files-edge-orch/repository"
 
@@ -19,6 +20,13 @@ if [ "$PLATFORM_TYPE" == "PTL" ]; then
     EMB_RAW_GZ="${EMB_FILE_NAME}.tar.gz"
     EMB_IMAGE_URL="${FILE_RS_URL}/${EMB_RAW_GZ}"
     echo "PTL Platform uOS is selected"
+elif [ "$PLATFORM_TYPE" == "NVL" ]; then
+    # NVL Platform (To be updated with PV release images)
+    EMB_BUILD_DATE=20260813
+    EMB_FILE_NAME="microvisor/uos/next/emb_uos_x86_64_${EMB_BUILD_DATE}"
+    EMB_RAW_GZ="${EMB_FILE_NAME}.tar.gz"
+    EMB_IMAGE_URL="${FILE_RS_URL}/${EMB_RAW_GZ}"
+    echo "NVL Platform uOS is selected"
 else
     # RPL/BTL Platform
     EMB_BUILD_DATE=20260722

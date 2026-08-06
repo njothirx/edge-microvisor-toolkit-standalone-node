@@ -8,6 +8,7 @@ FILE_RS_URL="https://files-rs.edgeorchestration.intel.com"
 
 export INSTALL_TYPE="${1:-NRT}"
 export PLATFORM_TYPE="${2:-PTL}"
+export PLATFORM_TYPE="${3:-NVL}"
 
 if [ "$INSTALL_TYPE" == "DV" ]; then
     # EMTS build with DV image non-PTL (RPL/BTL) platforms
@@ -27,12 +28,22 @@ else
 	      EMT_BUILD_DATE=20260722
 	      EMT_BUILD_NO=0750
 	      EMT_FILE_NAME="edge-readonly-${EMT_VERSION}.${EMT_BUILD_DATE}.${EMT_BUILD_NO}"
-
 	      EMT_RAW_GZ="${EMT_FILE_NAME}.raw.gz"
 	      EMT_SHA256SUM="${EMT_FILE_NAME}.raw.gz.sha256sum"
 
 	      curl -fk --noproxy "" ${FILE_RS_URL}/files-edge-orch/repository/microvisor/non_rt/26.06/${EMT_RAW_GZ} -o edge_microvisor_toolkit.raw.gz || { echo "Failed to download ${EMT_RAW_GZ}"; exit 1; }
 	      curl -fk --noproxy "" ${FILE_RS_URL}/files-edge-orch/repository/microvisor/non_rt/26.06/${EMT_SHA256SUM} -o edge_microvisor_toolkit.raw.gz.sha256sum || { echo "Failed to download ${EMT_SHA256SUM}"; exit 1; }
+    elif [ "$PLATFORM_TYPE" == "NVL" ]; then
+        # EMTS build with NRT image for NVL
+	      EMT_VERSION=26.06
+	      EMT_BUILD_DATE=20260813
+	      EMT_BUILD_NO=0233
+	      EMT_FILE_NAME="edge-readonly-${EMT_VERSION}.${EMT_BUILD_DATE}.${EMT_BUILD_NO}"
+	      EMT_RAW_GZ="${EMT_FILE_NAME}.raw.gz"
+	      EMT_SHA256SUM="${EMT_FILE_NAME}.raw.gz.sha256sum"
+
+	      curl -fk --noproxy "" ${FILE_RS_URL}/files-edge-orch/repository/microvisor/non_rt/next/${EMT_RAW_GZ} -o edge_microvisor_toolkit.raw.gz || { echo "Failed to download ${EMT_RAW_GZ}"; exit 1; }
+	      curl -fk --noproxy "" ${FILE_RS_URL}/files-edge-orch/repository/microvisor/non_rt/next/${EMT_SHA256SUM} -o edge_microvisor_toolkit.raw.gz.sha256sum || { echo "Failed to download ${EMT_SHA256SUM}"; exit 1; }
     else
         # EMTS build with NRT image for RPL/BTL
 	      EMT_VERSION=26.06

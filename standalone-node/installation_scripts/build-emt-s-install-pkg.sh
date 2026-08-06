@@ -7,7 +7,8 @@
 
 os_filename=""
 INSTALL_TYPE="${1:-NRT}"
-PLATFORM_TYPE="${2:-PTL}"
+PLATFORM_TYPE="${2:-PTL, NVL}"
+
 
 # Check for unsupported combinations
 if [[ "$INSTALL_TYPE" == "DV" && "$PLATFORM_TYPE" == "PTL" ]]; then
@@ -15,7 +16,7 @@ if [[ "$INSTALL_TYPE" == "DV" && "$PLATFORM_TYPE" == "PTL" ]]; then
     exit 1
 fi
 
-if [[ ("$INSTALL_TYPE" == "DV" || "$INSTALL_TYPE" == "NRT") && ("$PLATFORM_TYPE" == "RPL" || "$PLATFORM_TYPE" == "PTL") ]]; then
+if [[ ("$INSTALL_TYPE" == "DV" || "$INSTALL_TYPE" == "NRT") && ("$PLATFORM_TYPE" == "RPL" || "$PLATFORM_TYPE" == "PTL" || "$PLATFORM_TYPE" == "NVL") ]]; then
     echo "Continuing: INSTALL_TYPE is $INSTALL_TYPE and PLATFORM_TYPE is $PLATFORM_TYPE"
 else
     echo "Exiting: INSTALL_TYPE is $INSTALL_TYPE and PLATFORM_TYPE is $PLATFORM_TYPE"
