@@ -1,4 +1,4 @@
-# Standalone Node Makefile
+-# Standalone Node Makefile
 
 # SPDX-FileCopyrightText: (C) 2025 Intel Corporation
 # SPDX-License-Identifier: Apache-2.0
@@ -30,7 +30,7 @@ GIT_COMMIT    ?= $(shell git rev-parse HEAD)
 # Define variable NRT or DV based on the build; default is NRT
 INSTALL_TYPE  ?= NRT
 # Define variable RPL/BTL(non-PTL) and PTL based on the platform type; default is PTL
-PLATFORM_TYPE  ?= PTL, NVL
+PLATFORM_TYPE  ?= PTL
 
 # Yamllint variables
 YAML_FILES           := $(shell find . -path './venv_$(PROJECT_NAME)' -path './vendor' -prune -o -type f \( -name '*.yaml' -o -name '*.yml' \) -print )
